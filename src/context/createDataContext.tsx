@@ -3,7 +3,6 @@ import React, { useReducer } from "react";
 export default (reducer, actions, initialState) => {
   const Context = React.createContext({});
 
-  // eslint-disable-next-line react/prop-types
   const Provider: React.FC = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 

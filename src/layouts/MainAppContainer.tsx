@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
+    zIndex: 2,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -21,15 +22,15 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.18,
     shadowRadius: 1.0,
-    elevation: 1,
+    elevation: 8,
   },
 });
 
-const MainAppContainer = () => {
+const MainAppContainer = ({ mainContent, headerContent }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.headerContent} />
-      <View style={styles.mainContent} />
+      <View style={styles.headerContent}>{headerContent}</View>
+      <View style={styles.mainContent}>{mainContent}</View>
     </View>
   );
 };

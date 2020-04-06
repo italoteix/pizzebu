@@ -8,7 +8,7 @@ import CrustScreen from "./screens/CrustScreen";
 import SizeScreen from "./screens/SizeScreen";
 import ToppingsScreen from "./screens/ToppingsScreen";
 
-type StackParamList = {
+export type StackParamList = {
   Size: undefined;
   Crust: undefined;
   Toppings: undefined;

@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 
 export default (reducer, actions, initialState) => {
-  const Context = React.createContext({});
+  const Context = React.createContext(initialState);
 
   const Provider: React.FC = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);

@@ -3,8 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 import { APP_SIDE_MARGIN, DEVICE_WIDTH } from "../constants/dimensions";
 
-import logotype from "../../assets/logotype.png";
-import pizza from "../../assets/pizza.png";
+import images from "../../assets/images";
 
 const styles = StyleSheet.create({
   container: {
@@ -53,11 +52,19 @@ const DefaultHeader = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Image source={logotype} resizeMode="contain" style={styles.logo} />
+        <Image
+          source={images.logotype}
+          resizeMode="contain"
+          style={styles.logo}
+        />
         <Text style={styles.title}>$ 15.29</Text>
       </View>
       <View style={styles.imgContainer}>
-        <Image source={pizza} resizeMode="contain" style={styles.image} />
+        <Image
+          source={images.pizza}
+          resizeMode="contain"
+          style={styles.image}
+        />
       </View>
     </View>
   );

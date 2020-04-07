@@ -5,6 +5,11 @@ export interface SizeType {
   maxToppings?: number;
 }
 
+export interface ToppingsType {
+  name: string;
+  imgUrl: string;
+}
+
 export const SIZES: SizeType[] = [
   {
     name: "Small",
@@ -37,15 +42,45 @@ export const CRUSTIES: SizeType[] = [
   },
 ];
 
-export const TOPPINGS: string[] = [
-  "Pepperoni",
-  "Mushrooms",
-  "Onions",
-  "Sausage",
-  "Bacon",
-  "Extra cheese",
-  "Black olives",
-  "Green peppers",
-  "Pineapple",
-  "Spinach",
+export const TOPPINGS: ToppingsType[] = [
+  {
+    name: "Pepperoni",
+    imgUrl: "pepperoni",
+  },
+  {
+    name: "Mushrooms",
+    imgUrl: "mushrooms",
+  },
+  {
+    name: "Onions",
+    imgUrl: "onions",
+  },
+  {
+    name: "Sausage",
+    imgUrl: "sausage",
+  },
+  {
+    name: "Bacon",
+    imgUrl: "bacon",
+  },
+  {
+    name: "Extra cheese",
+    imgUrl: "extraCheese",
+  },
+  {
+    name: "Black olives",
+    imgUrl: "blackOlives",
+  },
+  {
+    name: "Green peppers",
+    imgUrl: "greenPeppers",
+  },
+  {
+    name: "Pineapple",
+    imgUrl: "pineapple",
+  },
+  {
+    name: "Spinach",
+    imgUrl: "spinach",
+  },
 ];

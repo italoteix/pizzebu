@@ -10,8 +10,8 @@ export interface StateType {
 }
 
 export type ActionType = {
-  type: "CHANGE_PIZZA_SIZE" | "CHANGE_PIZZA_CRUST";
-  payload: number;
+  type: "CHANGE_PIZZA_SIZE" | "CHANGE_PIZZA_CRUST" | "TOGGLE_TOPPING";
+  payload: number | string;
 };
 
 const initialState: StateType = {
@@ -27,6 +27,13 @@ const pizzaReducer = (state: StateType, action: ActionType) => {
       return { ...state, size: SIZES[action.payload].short };
     case "CHANGE_PIZZA_CRUST":
       return { ...state, crusty: CRUSTIES[action.payload].name };
+    case "TOGGLE_TOPPING":
+      return state.toppings?.indexOf(action.payload) < 0
+        ? { ...state, toppings: [...state.toppings, action.payload] }
+        : {
+            ...state,
+            toppings: state.toppings?.filter((top) => top !== action.payload),
+          };
     default:
       return state;
   }
@@ -44,8 +51,14 @@ const changePizzaCrust = (dispatch: React.Dispatch<ActionType>) => {
   };
 };
 
+const toggleTopping = (dispatch: React.Dispatch<ActionType>) => {
+  return (topping: string) => {
+    dispatch({ type: "TOGGLE_TOPPING", payload: topping });
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   pizzaReducer,
-  { changePizzaSize, changePizzaCrust },
+  { changePizzaSize, changePizzaCrust, toggleTopping },
   initialState
 );

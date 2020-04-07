@@ -10,7 +10,7 @@ export interface StateType {
 }
 
 export type ActionType = {
-  type: "CHANGE_PIZZA_SIZE";
+  type: "CHANGE_PIZZA_SIZE" | "CHANGE_PIZZA_CRUST";
   payload: number;
 };
 
@@ -25,6 +25,8 @@ const pizzaReducer = (state: StateType, action: ActionType) => {
   switch (action.type) {
     case "CHANGE_PIZZA_SIZE":
       return { ...state, size: SIZES[action.payload].short };
+    case "CHANGE_PIZZA_CRUST":
+      return { ...state, crusty: CRUSTIES[action.payload].name };
     default:
       return state;
   }
@@ -36,8 +38,14 @@ const changePizzaSize = (dispatch: React.Dispatch<ActionType>) => {
   };
 };
 
+const changePizzaCrust = (dispatch: React.Dispatch<ActionType>) => {
+  return (index: number) => {
+    dispatch({ type: "CHANGE_PIZZA_CRUST", payload: index });
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   pizzaReducer,
-  { changePizzaSize },
+  { changePizzaSize, changePizzaCrust },
   initialState
 );

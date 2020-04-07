@@ -1,19 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar } from "react-native";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+import Routes from "./src/routes";
+import { Provider } from "./src/context/PizzaContext";
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <Provider>
+      <StatusBar barStyle="light-content" backgroundColor="#ffc100" />
+      <Routes />
+    </Provider>
   );
-}
+};
+
+export default App;

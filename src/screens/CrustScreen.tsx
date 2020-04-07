@@ -71,7 +71,7 @@ const CrustScreen = ({ navigation }: Props) => {
           />
           <PrimaryButton
             title="next step"
-            onPress={() => navigation.navigate("Crust")}
+            onPress={() => navigation.navigate("Toppings")}
           />
         </View>
       }

@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 });
 
 export interface LabelProps {
-  values: string[] | undefined;
+  values: (string | undefined)[];
 }
 
 export interface OnValuesChange {
@@ -73,7 +73,7 @@ export interface OnValuesChange {
 }
 
 export interface SliderProps {
-  values: string[] | undefined;
+  values: (string | undefined)[];
   onValuesChange: OnValuesChange;
   initialValue: number;
 }
@@ -85,7 +85,7 @@ const Label: React.FC<LabelProps> = ({ values }) => {
       bounces={false}
       contentContainerStyle={styles.label}
       data={values}
-      keyExtractor={(item) => item}
+      keyExtractor={(_, index) => index.toString()}
       renderItem={({ item }) => <Text style={styles.labelText}>{item}</Text>}
     />
   );

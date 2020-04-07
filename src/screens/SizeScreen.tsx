@@ -33,11 +33,13 @@ type Props = {
 const SizeScreen = ({ navigation }: Props) => {
   const { state, changePizzaSize } = useContext(Context);
   const [imageSize, setImageSize] = useState(0);
+  const [sliderValue, setSliderValue] = useState(0);
 
   const getImageSize = (size: string | undefined) => {
     const index = SIZES.findIndex((e) => e.short === size);
     const newSize = DEVICE_WIDTH * (0.4 + index / 20);
     setImageSize(newSize);
+    setSliderValue(index);
   };
 
   const shortSizes = SIZES.map((size) => size.short);
@@ -60,7 +62,11 @@ const SizeScreen = ({ navigation }: Props) => {
               }}
             />
           </View>
-          <Slider values={shortSizes} onValuesChange={changePizzaSize} />
+          <Slider
+            values={shortSizes}
+            onValuesChange={changePizzaSize}
+            initialValue={sliderValue}
+          />
           <PrimaryButton
             title="next step"
             onPress={() => navigation.navigate("Crust")}

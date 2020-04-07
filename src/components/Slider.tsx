@@ -75,6 +75,7 @@ export interface OnValuesChange {
 export interface SliderProps {
   values: string[] | undefined;
   onValuesChange: OnValuesChange;
+  initialValue: number;
 }
 
 const Label: React.FC<LabelProps> = ({ values }) => {
@@ -90,7 +91,11 @@ const Label: React.FC<LabelProps> = ({ values }) => {
   );
 };
 
-const Slider: React.FC<SliderProps> = ({ values, onValuesChange }) => {
+const Slider: React.FC<SliderProps> = ({
+  values,
+  onValuesChange,
+  initialValue,
+}) => {
   const max = values ? values.length - 1 : 0;
   return (
     <View style={styles.container}>
@@ -105,6 +110,7 @@ const Slider: React.FC<SliderProps> = ({ values, onValuesChange }) => {
         markerContainerStyle={styles.markerContainer}
         markerStyle={styles.marker}
         selectedStyle={styles.selectedTrack}
+        values={[initialValue]}
       />
     </View>
   );

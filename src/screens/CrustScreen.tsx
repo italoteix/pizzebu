@@ -33,11 +33,13 @@ type Props = {
 const CrustScreen = ({ navigation }: Props) => {
   const { state, changePizzaCrust } = useContext(Context);
   const [scaleRatio, setScaleRatio] = useState(1);
+  const [sliderValue, setSliderValue] = useState(0);
 
   const getImageScale = (crust: string | undefined) => {
     const index = CRUSTIES.findIndex((e) => e.name === crust);
     const newRatio = 1 + index / 10;
     setScaleRatio(newRatio);
+    setSliderValue(index);
   };
 
   const crustiesList = CRUSTIES.map((crust) => crust.name);
@@ -62,7 +64,11 @@ const CrustScreen = ({ navigation }: Props) => {
               }}
             />
           </View>
-          <Slider values={crustiesList} onValuesChange={changePizzaCrust} />
+          <Slider
+            values={crustiesList}
+            onValuesChange={changePizzaCrust}
+            initialValue={sliderValue}
+          />
           <PrimaryButton
             title="next step"
             onPress={() => navigation.navigate("Crust")}

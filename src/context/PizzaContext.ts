@@ -28,10 +28,21 @@ const initialState: StateType = {
   extraToppingPrice: EXTRA_TOPPING_PRICE,
 };
 
+const getPrice = (state: StateType) => {
+  let total = 0;
+  const extraToppings = state?.toppings.length - state.size.maxToppings;
+  if (extraToppings > 0) total += extraToppings * state.extraToppingPrice;
+  total += state.size.price + state.crusty.price;
+  return total;
+};
+
 const pizzaReducer = (state: StateType, action: ActionType) => {
+  let newState = {};
   switch (action.type) {
     case "CHANGE_PIZZA_SIZE":
-      return { ...state, size: SIZES[action.payload] };
+      newState = { ...state, size: SIZES[action.payload] };
+      newState = { ...newState, price: getPrice(newState) };
+      return newState;
     case "CHANGE_PIZZA_CRUST":
       return { ...state, crusty: CRUSTIES[action.payload] };
     case "TOGGLE_TOPPING":

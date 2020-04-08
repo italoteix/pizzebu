@@ -41,7 +41,7 @@ const getPrice = (state: StateType) => {
 };
 
 const pizzaReducer = (state: StateType, action: ActionType) => {
-  let newState = {};
+  let newState = initialState;
   switch (action.type) {
     case "CHANGE_PIZZA_SIZE":
       newState = { ...state, size: SIZES[action.payload] };

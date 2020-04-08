@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Ionicons } from "@expo/vector-icons";
 
 import { PRIMARY_TEXT_COLOR, WHITE } from "../constants/colors";
@@ -50,7 +51,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const ConfirmationPopup = ({ active, finish, title }) => {
+interface ConfirmationPopupType {
+  active: boolean;
+  finish: CallableFunction;
+  title: string;
+}
+
+const ConfirmationPopup: React.FC<ConfirmationPopupType> = ({
+  active,
+  finish,
+  title,
+}) => {
   const [opacity] = useState(new Animated.Value(0));
   const [cover, setCover] = useState(new Animated.Value(1));
 

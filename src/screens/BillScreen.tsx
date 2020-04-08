@@ -80,6 +80,12 @@ type Props = {
   navigation: BillScreenNavigationProp;
 };
 
+interface BillItemProps {
+  title: string;
+  description: string;
+  price: string;
+}
+
 const Header = () => {
   return (
     <>
@@ -97,7 +103,7 @@ const Header = () => {
   );
 };
 
-const BillItem = ({ title, description, price }) => {
+const BillItem: React.FC<BillItemProps> = ({ title, description, price }) => {
   return (
     <View style={styles.billItem}>
       <View>
@@ -111,7 +117,7 @@ const BillItem = ({ title, description, price }) => {
 
 const BillScreen = ({ navigation }: Props) => {
   const { state, resetState } = useContext(Context);
-  const [extraToppings, setExtraToppings] = useState();
+  const [extraToppings, setExtraToppings] = useState({ count: 0, price: 0 });
   const [showPopup, setShowPopup] = useState(false);
 
   const resetApp = () => {

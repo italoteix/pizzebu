@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import images from "../../assets/images";
 import { APP_SIDE_MARGIN, DEVICE_WIDTH } from "../constants/dimensions";
 import { SELECTED_COLOR, SLIDER_COLOR } from "../constants/colors";
+import { ToppingsType } from "../constants/pizzaOptions";
 
 const styles = StyleSheet.create({
   container: {
@@ -26,9 +27,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const IngredientItem = ({ topping, isSelected, onPress }) => {
+interface IngredientItemType {
+  topping: ToppingsType;
+  isSelected: boolean;
+  onPress: CallableFunction;
+}
+
+const IngredientItem: React.FC<IngredientItemType> = ({
+  topping,
+  isSelected,
+  onPress,
+}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={() => onPress()}>
       <>
         <View
           style={[

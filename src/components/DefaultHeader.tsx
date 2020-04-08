@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 import { APP_SIDE_MARGIN, DEVICE_WIDTH } from "../constants/dimensions";
+import { SHADOW_COLOR, WHITE } from "../constants/colors";
 import images from "../../assets/images";
 import { Context } from "../context/PizzaContext";
 
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     marginTop: "20%",
   },
   title: {
-    color: "#fff",
+    color: WHITE,
     fontSize: 40,
     fontWeight: "bold",
     marginBottom: "15%",
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
   imgContainer: {
     flex: 2,
     position: "relative",
-    shadowColor: "#000",
+    shadowColor: SHADOW_COLOR,
     shadowOffset: {
       width: 0,
       height: 4,

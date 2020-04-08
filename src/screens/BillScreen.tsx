@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useContext, useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 import { StackParamList } from "../routes";
@@ -9,11 +9,11 @@ import {
   SECONDARY_TEXT_COLOR,
   SLIDER_COLOR,
 } from "../constants/colors";
-import { FONT_SIZES } from "../constants/dimensions";
+import { DEVICE_WIDTH, FONT_SIZES } from "../constants/dimensions";
 import { Context } from "../context/PizzaContext";
+import images from "../../assets/images";
 
 import MainAppContainer from "../layouts/MainAppContainer";
-import DefaultHeader from "../components/DefaultHeader";
 import PrimaryButton from "../components/PrimaryButton";
 
 const styles = StyleSheet.create({
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: 15,
+    marginBottom: 15,
   },
   itemTitle: {
     fontSize: FONT_SIZES.md,
@@ -58,12 +58,41 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: PRIMARY_TEXT_COLOR,
   },
+  logo: {
+    marginHorizontal: "auto",
+    width: "100%",
+    height: DEVICE_WIDTH * 0.2,
+  },
+  pizza: {
+    width: DEVICE_WIDTH,
+    height: DEVICE_WIDTH * 0.5,
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+  },
 });
 
 type BillScreenNavigationProp = StackNavigationProp<StackParamList, "Toppings">;
 
 type Props = {
   navigation: BillScreenNavigationProp;
+};
+
+const Header = () => {
+  return (
+    <>
+      <Image
+        source={images.logotype}
+        resizeMode="contain"
+        style={styles.logo}
+      />
+      <Image
+        source={images.pizzaHand}
+        style={styles.pizza}
+        resizeMode="contain"
+      />
+    </>
+  );
 };
 
 const BillItem = ({ title, description, price }) => {
@@ -99,7 +128,7 @@ const BillScreen = ({ navigation }: Props) => {
   return (
     <MainAppContainer
       title="your pizza bill"
-      headerContent={<DefaultHeader />}
+      headerContent={<Header />}
       mainContent={
         <View style={styles.container}>
           <BillItem

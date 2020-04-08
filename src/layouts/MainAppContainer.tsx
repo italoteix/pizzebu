@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   },
   headerContent: {
     flex: 1,
+    position: "relative",
   },
   mainContent: {
     flex: 2,

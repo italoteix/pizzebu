@@ -13,6 +13,7 @@ const images = {
   greenPeppers: require("./img/green-peppers.png"),
   pineapple: require("./img/pineapple.png"),
   spinach: require("./img/spinach.png"),
+  pizzaHand: require("./img/pizza-hand.png"),
 };
 
 export default images;

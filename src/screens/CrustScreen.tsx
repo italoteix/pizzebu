@@ -45,8 +45,9 @@ const CrustScreen = ({ navigation }: Props) => {
   const crustiesList = CRUSTIES.map((crust) => crust.name);
 
   useEffect(() => {
-    getImageScale(state.crusty);
+    getImageScale(state.crusty.name);
   }, [state.crusty]);
+
   return (
     <MainAppContainer
       title="crusties"

@@ -45,7 +45,7 @@ const SizeScreen = ({ navigation }: Props) => {
   const shortSizes = SIZES.map((size) => size.short);
 
   useEffect(() => {
-    getImageSize(state.size);
+    getImageSize(state.size.short);
   }, [state.size]);
   return (
     <MainAppContainer

@@ -84,3 +84,5 @@ export const TOPPINGS: ToppingsType[] = [
     imgUrl: "spinach",
   },
 ];
+
+export const EXTRA_TOPPING_PRICE = 0.5;

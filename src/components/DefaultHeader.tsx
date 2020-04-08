@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 import { APP_SIDE_MARGIN, DEVICE_WIDTH } from "../constants/dimensions";
-
 import images from "../../assets/images";
+import { Context } from "../context/PizzaContext";
 
 const styles = StyleSheet.create({
   container: {
@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
 });
 
 const DefaultHeader = () => {
+  const { state } = useContext(Context);
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -57,7 +59,7 @@ const DefaultHeader = () => {
           resizeMode="contain"
           style={styles.logo}
         />
-        <Text style={styles.title}>$ 15.29</Text>
+        <Text style={styles.title}>{`$ ${state.price.toFixed(2)}`}</Text>
       </View>
       <View style={styles.imgContainer}>
         <Image

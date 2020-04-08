@@ -20,9 +20,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const PrimaryButton = ({ onPress, title }) => {
+interface PrimaryButtonType {
+  onPress: CallableFunction;
+  title: string;
+}
+
+const PrimaryButton: React.FC<PrimaryButtonType> = ({ onPress, title }) => {
   return (
-    <RectButton style={styles.button} onPress={onPress}>
+    <RectButton style={styles.button} onPress={() => onPress()}>
       <View accessible>
         <Text style={styles.buttonText}>{title}</Text>
       </View>

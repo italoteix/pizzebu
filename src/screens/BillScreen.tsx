@@ -10,7 +10,6 @@ import {
   SLIDER_COLOR,
 } from "../constants/colors";
 import { FONT_SIZES } from "../constants/dimensions";
-import { CRUSTIES, SIZES } from "../constants/pizzaOptions";
 import { Context } from "../context/PizzaContext";
 
 import MainAppContainer from "../layouts/MainAppContainer";
@@ -81,23 +80,20 @@ const BillItem = ({ title, description, price }) => {
 
 const BillScreen = ({ navigation }: Props) => {
   const { state } = useContext(Context);
-  const [size, setSize] = useState();
-  const [crust, setCrust] = useState();
-  const [toppings, setToppings] = useState();
-
-  const getSize = (pizzaSize: string | undefined) => {
-    const index = SIZES.findIndex((e) => e.short === pizzaSize);
-    setSize(SIZES[index]);
-  };
-
-  const getCrust = (pizzaCrust: string | undefined) => {
-    const index = CRUSTIES.findIndex((e) => e.name === pizzaCrust);
-    setCrust(CRUSTIES[index]);
-  };
+  const [extraToppings, setExtraToppings] = useState();
 
   useEffect(() => {
-    getSize(state.size);
-    getCrust(state.crusty);
+    const extraTop = state.toppings.length - state.size.maxToppings;
+
+    if (extraTop < 1) {
+      setExtraToppings({ count: 0, price: 0 });
+      return;
+    }
+
+    setExtraToppings({
+      count: extraTop,
+      price: extraTop * state.extraToppingPrice,
+    });
   }, [state]);
 
   return (
@@ -107,20 +103,22 @@ const BillScreen = ({ navigation }: Props) => {
       mainContent={
         <View style={styles.container}>
           <BillItem
-            title={`${size && size.name} Pizza`}
+            title={`${state?.size?.name} Pizza`}
             description="x 1"
-            price={size && size.price.toFixed(2)}
+            price={state?.size.price.toFixed(2)}
           />
           <BillItem
-            title={`${crust && crust.name} Crust`}
+            title={`${state?.crusty.name} Crust`}
             description="x 1"
-            price={crust && crust.price.toFixed(2)}
+            price={state?.crusty.price.toFixed(2)}
           />
-          <BillItem
-            title="Aditional toppings"
-            description="x 1"
-            price="12.00"
-          />
+          {extraToppings?.count > 0 && (
+            <BillItem
+              title="Aditional toppings"
+              description={`x ${extraToppings?.count}`}
+              price={extraToppings?.price.toFixed(2)}
+            />
+          )}
           <View style={styles.sumContainer}>
             <Text style={styles.sumText}>Sum</Text>
             <Text style={styles.sumText}>{`$ ${state.price.toFixed(2)}`}</Text>

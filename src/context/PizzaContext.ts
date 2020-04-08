@@ -1,12 +1,18 @@
 import createDataContext from "./createDataContext";
 
-import { CRUSTIES, SIZES } from "../constants/pizzaOptions";
+import {
+  CRUSTIES,
+  EXTRA_TOPPING_PRICE,
+  SIZES,
+  SizeType,
+} from "../constants/pizzaOptions";
 
 export interface StateType {
-  size: string | undefined;
-  crusty: string | undefined;
+  size: SizeType | undefined;
+  crusty: SizeType | undefined;
   toppings: string[] | undefined;
   price: number;
+  extraToppingPrice: number;
 }
 
 export type ActionType = {
@@ -15,18 +21,19 @@ export type ActionType = {
 };
 
 const initialState: StateType = {
-  size: SIZES[0].short,
-  crusty: CRUSTIES[0].name,
+  size: SIZES[0],
+  crusty: CRUSTIES[0],
   toppings: [],
   price: 10.0,
+  extraToppingPrice: EXTRA_TOPPING_PRICE,
 };
 
 const pizzaReducer = (state: StateType, action: ActionType) => {
   switch (action.type) {
     case "CHANGE_PIZZA_SIZE":
-      return { ...state, size: SIZES[action.payload].short };
+      return { ...state, size: SIZES[action.payload] };
     case "CHANGE_PIZZA_CRUST":
-      return { ...state, crusty: CRUSTIES[action.payload].name };
+      return { ...state, crusty: CRUSTIES[action.payload] };
     case "TOGGLE_TOPPING":
       return state.toppings?.indexOf(action.payload) < 0
         ? { ...state, toppings: [...state.toppings, action.payload] }

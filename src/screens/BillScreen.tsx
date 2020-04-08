@@ -15,6 +15,7 @@ import images from "../../assets/images";
 
 import MainAppContainer from "../layouts/MainAppContainer";
 import PrimaryButton from "../components/PrimaryButton";
+import Popup from "../components/Popup";
 
 const styles = StyleSheet.create({
   container: {
@@ -110,6 +111,7 @@ const BillItem = ({ title, description, price }) => {
 const BillScreen = ({ navigation }: Props) => {
   const { state } = useContext(Context);
   const [extraToppings, setExtraToppings] = useState();
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const extraTop = state.toppings.length - state.size.maxToppings;
@@ -131,6 +133,11 @@ const BillScreen = ({ navigation }: Props) => {
       headerContent={<Header />}
       mainContent={
         <View style={styles.container}>
+          <Popup
+            title="success"
+            finish={() => setShowPopup(false)}
+            active={showPopup}
+          />
           <BillItem
             title={`${state?.size?.name} Pizza`}
             description="x 1"
@@ -152,7 +159,10 @@ const BillScreen = ({ navigation }: Props) => {
             <Text style={styles.sumText}>Sum</Text>
             <Text style={styles.sumText}>{`$ ${state.price.toFixed(2)}`}</Text>
           </View>
-          <PrimaryButton title="place order" onPress={() => {}} />
+          <PrimaryButton
+            title="place order"
+            onPress={() => setShowPopup(true)}
+          />
         </View>
       }
     />

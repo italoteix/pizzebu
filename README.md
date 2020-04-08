@@ -9,7 +9,7 @@ It’s a pizza delivery app ,where the user can customize its pizza.
 
 Regarding the layout, some dummy stuff was added just to make the project look more like a complete application, instead of just showing the required components.
 
-![Pizzebu Demo](https://i.imgur.com/LH8VZPm.gif)
+![App demo](/demo/app-demo.gif)
 
 ## Project Features
 

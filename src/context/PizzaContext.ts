@@ -16,7 +16,11 @@ export interface StateType {
 }
 
 export type ActionType = {
-  type: "CHANGE_PIZZA_SIZE" | "CHANGE_PIZZA_CRUST" | "TOGGLE_TOPPING";
+  type:
+    | "CHANGE_PIZZA_SIZE"
+    | "CHANGE_PIZZA_CRUST"
+    | "TOGGLE_TOPPING"
+    | "RESET_STATE";
   payload: number | string;
 };
 
@@ -57,6 +61,8 @@ const pizzaReducer = (state: StateType, action: ActionType) => {
             };
       newState = { ...newState, price: getPrice(newState) };
       return newState;
+    case "RESET_STATE":
+      return initialState;
     default:
       return state;
   }
@@ -80,8 +86,14 @@ const toggleTopping = (dispatch: React.Dispatch<ActionType>) => {
   };
 };
 
+const resetState = (dispatch: React.Dispatch<ActionType>) => {
+  return () => {
+    dispatch({ type: "RESET_STATE", payload: "" });
+  };
+};
+
 export const { Context, Provider } = createDataContext(
   pizzaReducer,
-  { changePizzaSize, changePizzaCrust, toggleTopping },
+  { changePizzaSize, changePizzaCrust, toggleTopping, resetState },
   initialState
 );

@@ -2,6 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { StackActions } from "@react-navigation/native";
 
 import { StackParamList } from "../routes";
 import {
@@ -109,9 +110,15 @@ const BillItem = ({ title, description, price }) => {
 };
 
 const BillScreen = ({ navigation }: Props) => {
-  const { state } = useContext(Context);
+  const { state, resetState } = useContext(Context);
   const [extraToppings, setExtraToppings] = useState();
   const [showPopup, setShowPopup] = useState(false);
+
+  const resetApp = () => {
+    setShowPopup(false);
+    resetState();
+    navigation.dispatch(StackActions.popToTop());
+  };
 
   useEffect(() => {
     const extraTop = state.toppings.length - state.size.maxToppings;
@@ -133,11 +140,7 @@ const BillScreen = ({ navigation }: Props) => {
       headerContent={<Header />}
       mainContent={
         <View style={styles.container}>
-          <Popup
-            title="success"
-            finish={() => setShowPopup(false)}
-            active={showPopup}
-          />
+          <Popup title="success" finish={resetApp} active={showPopup} />
           <BillItem
             title={`${state?.size?.name} Pizza`}
             description="x 1"

@@ -9,8 +9,7 @@ It’s a pizza delivery app ,where the user can customize its pizza.
 
 Regarding the layout, some dummy stuff was added just to make the project look more like a complete application, instead of just showing the required components.
 
-<img src="https://i.imgur.com/LH8VZPm.gif?raw=true" width="300px">
-![App demo](demo/app-demo.gif)
+![App demo](/demo/app-demo.gif)
 
 ## Project Features
 

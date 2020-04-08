@@ -1,13 +1,15 @@
 # PIZZEBU
 
-<p align="center"><img src="https://imgur.com/PJF33az" alt="logo"/></p>
+![Pizzebu](https://i.imgur.com/PJF33az.png)
+
+[![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-000.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/)
 
 This project was created as a challenge for [ZEBU](https://www.zebu.io/).
 It’s a pizza delivery app ,where the user can customize its pizza.
 
 Regarding the layout, some dummy stuff was added just to make the project look more like a complete application, instead of just showing the required components.
 
-![Pizzebu Demo](https://imgur.com/LH8VZPm)
+![Pizzebu Demo](https://i.imgur.com/LH8VZPm.gif)
 
 ## Project Features
 

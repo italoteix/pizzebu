@@ -44,14 +44,19 @@ const pizzaReducer = (state: StateType, action: ActionType) => {
       newState = { ...newState, price: getPrice(newState) };
       return newState;
     case "CHANGE_PIZZA_CRUST":
-      return { ...state, crusty: CRUSTIES[action.payload] };
+      newState = { ...state, crusty: CRUSTIES[action.payload] };
+      newState = { ...newState, price: getPrice(newState) };
+      return newState;
     case "TOGGLE_TOPPING":
-      return state.toppings?.indexOf(action.payload) < 0
-        ? { ...state, toppings: [...state.toppings, action.payload] }
-        : {
-            ...state,
-            toppings: state.toppings?.filter((top) => top !== action.payload),
-          };
+      newState =
+        state.toppings?.indexOf(action.payload) < 0
+          ? { ...state, toppings: [...state.toppings, action.payload] }
+          : {
+              ...state,
+              toppings: state.toppings?.filter((top) => top !== action.payload),
+            };
+      newState = { ...newState, price: getPrice(newState) };
+      return newState;
     default:
       return state;
   }
